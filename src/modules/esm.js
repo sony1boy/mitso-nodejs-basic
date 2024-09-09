@@ -4,25 +4,20 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { promises as fs } from 'fs';
 
-// Получение абсолютного пути к текущему файлу и директории
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Формирование относительных путей к JSON-файлам
 const aJSONPath = path.join(__dirname, 'files', 'a.json');
 const bJSONPath = path.join(__dirname, 'files', 'b.json');
 
-// Функция для динамической загрузки JSON-файлов
 async function loadJSON(filePath) {
     const data = await fs.readFile(filePath, 'utf8');
     return JSON.parse(data);
 }
 
-// Загрузка JSON-файлов
 const aJSON = await loadJSON(aJSONPath);
 const bJSON = await loadJSON(bJSONPath);
 
-// Импорт скрипта c.js
 import './files/c.js';
 
 const random = Math.random();
